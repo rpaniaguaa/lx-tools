@@ -20,9 +20,9 @@ function is_ipforward_configured(){
 }
 
 function install_iptables(){
-	is_iptables_installed="/usr/sbin/iptables"
+	is_iptables_installed=$(which iptables)
 
-	if [[ $is_iptables_installed != "/usr/sbin/iptables" ]];then
+	if [[ -z $is_iptables_installed ]];then
                 echo "Updating system...";sleep 1
 		apt update && apt upgrade -y
 		if [[ $? -ne 0 ]];then
